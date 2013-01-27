@@ -1,0 +1,34 @@
+Question:Briefly documents your data structures and the design decisions you made in WUGraph.java
+and Kruskal.java that extend or depart from those discussed here.
+
+Answer:
+None.
+
+
+Question:
+In particular, tell us what choices you made in your implementation to ensure that removeVertex() 
+runs in O(d) time (as described in Part I, design element [4]) and getVertices() runs in O(|V|) 
+time (design element [2]).
+
+Answer:
+for 
+public void removeVertex(Object vertex);
+
+After checking that "vertex"'s existence, the method will walk through the adjacency list the
+"vertex" has, if the current edge is a not a self edge, it will be removed from the other adj-list.
+Because I use two pointer within each edge object to two adj-list notes, this runs in
+constant time. After walking through the adj-lists, the vertex object will be removed from the
+vertex list; because the vertex list is a DList, this process takes constant time. Also, the 
+vertex would be removed from the hashTable that takes constant time.
+So the whole process is in O(the length of the adj-list), which is O(d).
+
+
+for
+public Object[] getVertices();
+
+The WUGraph object has a field verticesList that is a DList to record all the vertices it has.
+So the getVerteices() method simply build an array and walk through the verticesList. During the
+walking through, it will put the exVertex field, which points to external object vertex, within
+each internal vertex object into the returned array. After the scanning, the method will return
+the array. Also, the edge object will be removed from the hashTable, which takes constant time.
+The running time will be in O(length of the verticesList), which is O(|V|).
